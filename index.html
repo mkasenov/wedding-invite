@@ -411,7 +411,7 @@ tick();setInterval(tick,1000);
    2) @userinfobot-қа /start жазып, өз id-ыңызды TELEGRAM_CHAT_ID-ге қойыңыз (ботқа бір рет /start басыңыз).
 */
 const TELEGRAM_BOT_TOKEN = '8889568967:AAFj9XJkahZngchqttKS0LuS6Z4PETaP6kQ';
-const TELEGRAM_CHAT_ID   = ''; // <-- ӨЗ chat id-ыңызды қойыңыз (төмендегі нұсқаны қараңыз)
+const TELEGRAM_CHAT_ID   = '342132743';
 function sendToTelegram(d){
   if(!TELEGRAM_BOT_TOKEN||!TELEGRAM_CHAT_ID)return;
   const text='💌 RSVP — Мәди & Елдана\n\n👤 '+d.name+'\n'+(d.attending==='yes'?'✅ Келемін · 👥 '+d.guests:'🙏 Келе алмаймын')+(d.msg?'\n💬 '+d.msg:'');
