@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Мәди & Елдана — Тойға шақыру</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Caveat:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap&subset=cyrillic,cyrillic-ext,latin,latin-ext" rel="stylesheet">
+<style>
+:root{
+  --cream:#F3F1EC;
+  --paper:#FFFFFF;
+  --sage:#9DAA88;
+  --sage-deep:#7E8C6B;
+  --olive:#4F583F;
+  --olive-2:#3E462F;
+  --ink:#2A2A26;
+  --muted:#9A9C93;
+  --line:#DCD9CF;
+  --red:#D8322A;
+  --shadow:0 30px 80px -40px rgba(60,66,45,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:#cfccc4;color:var(--ink);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.stage{max-width:520px;margin:0 auto;position:relative;background:var(--paper);box-shadow:0 0 60px rgba(0,0,0,.12);overflow:hidden;container-type:inline-size}
+img{display:block;max-width:100%}
+
+/* ---------- type ---------- */
+.eyebrow{font-family:'Montserrat',sans-serif;font-weight:500;font-size:15px;letter-spacing:.04em;color:var(--sage);text-align:center}
+.script-bk{font-family:'Caveat',cursive;color:var(--ink)}
+.vibes{font-family:'Great Vibes',cursive}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.22s}.reveal.d3{transition-delay:.34s}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ---------- bands + torn paper ---------- */
+.band{position:relative;z-index:1;width:100%;height:clamp(300px,56vh,460px);object-fit:cover}
+.paper{position:relative;z-index:2;background:var(--paper);padding:54px clamp(26px,7vw,44px) 58px}
+.paper::before,.paper::after{content:"";position:absolute;left:-1px;right:-1px;height:24px;background:var(--paper);-webkit-mask:url(assets/torn.png) center/100% 100% no-repeat;mask:url(assets/torn.png) center/100% 100% no-repeat;pointer-events:none;z-index:3}
+.paper::after{top:100%}
+.paper::before{bottom:100%;transform:scaleY(-1)}
+.paper.sage{background:var(--sage)}
+.paper.sage::before,.paper.sage::after{background:var(--sage)}
+.paper.first::before{display:none}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:100svh;min-height:540px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(40,42,34,.28) 0%,rgba(40,42,34,.05) 22%,rgba(40,42,34,.02) 55%,rgba(40,42,34,.18) 100%)}
+.hero-top{position:absolute;top:5.5%;left:0;right:0;z-index:2;text-align:center;font-family:'Montserrat',sans-serif;font-weight:600;font-size:clamp(19px,5.2vw,24px);letter-spacing:.02em;color:#fff;text-shadow:0 2px 14px rgba(30,30,20,.4)}
+.hero-names{position:absolute;top:39%;left:0;right:0;z-index:2;transform:translateY(-50%);text-align:center;color:#fff;filter:drop-shadow(0 6px 22px rgba(20,22,14,.35))}
+.hero-names .hnm{font-family:'Great Vibes',cursive;line-height:.62;font-size:clamp(64px,24cqw,132px)}
+.hero-names .hnm2{margin-top:.04em}
+.hero-dt{position:absolute;top:60%;left:0;right:0;z-index:2;text-align:center;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,9vw,46px);letter-spacing:.04em;text-shadow:0 3px 16px rgba(30,30,20,.45)}
+.scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:38px;background:linear-gradient(#fff,transparent);opacity:.8;animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateX(-50%) scaleY(.5);opacity:.4;transform-origin:top}50%{transform:translateX(-50%) scaleY(1);opacity:.9;transform-origin:top}}
+
+/* ---------- INVITATION ---------- */
+.invite-hi{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(21px,5.4vw,26px);color:#7c7e74;text-align:center;margin-bottom:14px}
+.invite-text{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,4.9vw,24px);line-height:1.5;color:#86887e;text-align:center;max-width:30ch;margin:0 auto;text-wrap:pretty}
+.hosts-eye{margin:42px 0 6px}
+.hosts-script{font-family:'Caveat',cursive;font-weight:600;font-size:clamp(34px,12cqw,56px);line-height:1;color:var(--ink);text-align:center;white-space:nowrap}
+
+/* ---------- VENUE ---------- */
+.center{text-align:center}
+.bigscript{font-family:'Caveat',cursive;font-weight:600;color:var(--ink);font-size:clamp(46px,16cqw,82px);line-height:.95;margin-top:8px;text-align:center}
+.addr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,4.5vw,21px);color:#8a8c82;margin-top:8px;text-align:center}
+.btn{display:inline-flex;align-items:center;gap:11px;font-family:'Montserrat',sans-serif;font-weight:400;letter-spacing:.28em;text-transform:uppercase;font-size:12px;padding:15px 30px;color:#F4F3ED;background:var(--olive);border:none;border-radius:3px;cursor:pointer;text-decoration:none;transition:background .35s,transform .35s}
+.btn:hover{background:var(--olive-2);transform:translateY(-2px)}
+.map-embed{margin:26px auto 0;width:100%;max-width:430px;height:210px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(125,140,107,.22)}
+.map-embed iframe{width:100%;height:100%;border:0;filter:grayscale(.16) contrast(.98)}
+.map-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:16px}
+.mini-btn{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);background:transparent;border:1px solid var(--sage);padding:11px 18px;border-radius:3px;text-decoration:none;transition:background .3s,color .3s,border-color .3s}
+.mini-btn:hover{background:var(--olive);color:#fff;border-color:var(--olive)}
+
+/* ---------- PROGRAM ---------- */
+.prog-head{margin:64px 0 0}
+.timeline{max-width:400px;margin:30px auto 0;position:relative}
+.timeline:before{content:"";position:absolute;left:50%;top:4px;bottom:4px;width:1px;background:var(--line);transform:translateX(-.5px)}
+.tl-item{position:relative;text-align:center;padding:26px 0 30px}
+.tl-node{width:9px;height:9px;border-radius:50%;background:#fff;border:1.5px solid var(--sage);position:relative;z-index:2;margin:0 auto 16px}
+.tl-time{font-family:'Caveat',cursive;font-weight:600;font-size:clamp(40px,12vw,56px);line-height:.8;color:var(--ink);letter-spacing:.02em}
+.tl-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:clamp(19px,5vw,23px);color:var(--ink);margin-top:10px}
+.tl-sub{font-weight:300;font-size:12.5px;color:var(--muted);margin-top:5px;letter-spacing:.01em}
+
+/* ---------- COUNTDOWN + CALENDAR ---------- */
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(6px,3vw,16px);max-width:430px;margin:34px auto 0}
+.cd-cell{text-align:center}
+.cd-num{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(38px,12vw,58px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.cd-line{height:1px;background:#222;margin:10px 16% 8px}
+.cd-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6f7167}
+.cal-month{font-family:'Caveat',cursive;font-weight:600;font-size:clamp(50px,17cqw,80px);color:var(--ink);text-align:center;margin:46px 0 22px}
+.cal{max-width:420px;margin:0 auto;display:grid;grid-template-columns:repeat(7,1fr);gap:8px 2px}
+.cal .dow{font-size:13px;letter-spacing:.04em;color:#7d7f76;text-align:center;padding-bottom:8px;font-weight:500}
+.cal .dy{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:clamp(16px,4.4vw,20px);font-weight:400;color:#2a2a26}
+.cal .we{color:var(--red)}
+.cal .em{color:#cdcabf}
+.cal .mark{font-weight:500;color:#2a2a26}
+.cal .mark .hh{position:absolute;left:50%;top:50%;width:46px;height:46px;transform:translate(-50%,-52%) rotate(-6deg);pointer-events:none}
+
+/* ---------- RSVP ---------- */
+.rsvp{color:#fff}
+.rsvp .eyebrow{color:rgba(255,255,255,.85)}
+.rsvp .cal-month{color:#fff;margin:8px 0 6px}
+.rsvp .deadline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(21px,5.6vw,27px);color:#fff;text-align:center;margin-bottom:8px;padding-top:6px}
+.form{max-width:430px;margin:34px auto 0;display:flex;flex-direction:column;gap:22px;text-align:left}
+.field label{display:block;font-size:14px;letter-spacing:.01em;color:#fff;margin-bottom:10px;font-weight:400}
+.field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:4px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:300;font-size:15px;padding:15px 16px;transition:border .3s,background .3s}
+.field textarea{resize:vertical;min-height:104px}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.62)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.26)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23fff' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.field select option{color:#2a2a26}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.seg button{font-family:'Montserrat',sans-serif;font-weight:400;font-size:13px;padding:16px 8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:4px;cursor:pointer;transition:all .3s}
+.seg button.on{background:#fff;color:var(--olive);border-color:#fff;font-weight:500}
+.rsvp .btn{background:var(--olive);align-self:center;margin-top:8px;letter-spacing:.3em}
+.rsvp .btn:hover{background:var(--olive-2)}
+.form-done{text-align:center;max-width:420px;margin:30px auto 0;display:none}
+.form-done.show{display:block}
+.form-done .ic{width:56px;height:56px;border-radius:50%;border:1.5px solid #fff;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.form-done h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;margin-bottom:9px}
+.form-done p{font-weight:300;font-size:15px;color:rgba(255,255,255,.92)}
+
+/* ---------- FOOTER ---------- */
+.footer{position:relative;z-index:2;background:var(--cream);text-align:center;padding:54px 24px 66px}
+.footer .couple-mono{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px}
+.footer .couple-mono .ini{font-family:'Great Vibes',cursive;font-size:46px;color:var(--ink)}
+.footer .couple-mono .hh{width:30px}
+.footer .f-script{font-family:'Great Vibes',cursive;font-size:54px;color:var(--ink);line-height:1}
+.footer .f-date{margin-top:8px;letter-spacing:.34em;font-size:12px;color:var(--muted);padding-left:.34em}
+.footer .f-love{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--sage-deep);margin-top:16px}
+
+/* ---------- AUDIO ---------- */
+.audio-btn{position:fixed;right:16px;bottom:16px;z-index:60;width:48px;height:48px;border-radius:50%;background:var(--olive);border:1px solid rgba(255,255,255,.25);box-shadow:0 14px 34px -12px rgba(40,46,30,.85);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .35s}
+.audio-btn:hover{transform:scale(1.06)}
+.audio-btn .bars{display:flex;align-items:flex-end;gap:2.5px;height:17px}
+.audio-btn .bars i{width:2.5px;background:#F2F1E9;border-radius:2px;height:30%}
+.audio-btn.playing .bars i{animation:eq 1s ease-in-out infinite}
+.audio-btn .bars i:nth-child(1){animation-delay:0s}.audio-btn .bars i:nth-child(2){animation-delay:.2s}.audio-btn .bars i:nth-child(3){animation-delay:.4s}.audio-btn .bars i:nth-child(4){animation-delay:.15s}
+@keyframes eq{0%,100%{height:25%}50%{height:100%}}
+.audio-hint{position:fixed;right:72px;bottom:29px;z-index:60;background:var(--ink);color:#F2F1E9;font-size:11px;letter-spacing:.05em;padding:8px 13px;border-radius:30px;white-space:nowrap;box-shadow:0 10px 26px -14px rgba(0,0,0,.6);opacity:0;transform:translateX(8px);transition:opacity .5s,transform .5s;pointer-events:none}
+.audio-hint.show{opacity:1;transform:none}
+
+/* ---------- ENVELOPE INTRO ---------- */
+.veil{position:fixed;inset:0;z-index:90;background:radial-gradient(125% 85% at 50% 26%, #fffdf8 0%, var(--cream) 58%, #e9e4d9 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transition:opacity 1s ease,visibility 1s;perspective:1500px;-webkit-perspective:1500px;padding:24px}
+.veil.gone{opacity:0;visibility:hidden}
+.env{position:relative;width:min(84vw,360px);height:min(56vw,240px);transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform 1s ease,opacity .8s ease;cursor:pointer;transform:translateY(12px) scale(.98)}
+.veil.ready .env{transform:none}
+.env-back,.letter,.env-front,.env-flap,.seal{position:absolute}
+.env-back{inset:0;background:linear-gradient(160deg,#f1ebde,#e6ddcb);border-radius:8px;box-shadow:0 44px 84px -42px rgba(70,60,35,.55), inset 0 0 0 1px rgba(255,255,255,.4)}
+.letter{left:6%;top:5%;width:88%;height:90%;background:linear-gradient(#fffefb,#fbf8f1);border:1px solid #ece5d6;border-radius:6px;box-shadow:0 18px 44px -22px rgba(70,60,35,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:2;transform:translateY(0);transition:transform 1.2s cubic-bezier(.42,0,.12,1),z-index 0s linear .55s}
+.env.open .letter{transform:translateY(-74%);z-index:6}
+.letter .l-script{font-family:'Great Vibes',cursive;font-size:clamp(34px,8.5vw,48px);color:var(--ink);line-height:1}
+.letter .l-eye{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--sage-deep);margin:12px 0 7px;padding-left:.34em}
+.letter .l-date{font-size:11px;letter-spacing:.3em;color:var(--muted);padding-left:.3em}
+.letter .l-heart{width:24px;height:auto;margin:13px auto 0}
+.env-front{inset:0;z-index:4;background:linear-gradient(155deg,#efe8d9,#e7decb);border-radius:8px;clip-path:polygon(0 0,50% 50%,100% 0,100% 100%,0 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.env-flap{inset:0;z-index:7;transform-origin:50% 0;transform:rotateX(0deg);transition:transform .95s cubic-bezier(.6,0,.3,1),z-index 0s linear .48s;background:linear-gradient(#f0e8d6,#e2d8c2);clip-path:polygon(0 0,100% 0,50% 50%);backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:drop-shadow(0 2px 3px rgba(120,100,60,.15))}
+.env.open .env-flap{transform:rotateX(-176deg);z-index:1}
+.seal{left:50%;top:50%;transform:translate(-50%,-50%);z-index:9;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fbf1da;font-family:'Great Vibes',cursive;font-size:21px;background:radial-gradient(circle at 36% 32%,#c89f63,#9a7531 60%,#7c5d25);box-shadow:0 10px 22px -8px rgba(90,65,20,.75),inset 0 2px 5px rgba(255,255,255,.35),inset 0 -3px 6px rgba(0,0,0,.25);transition:transform .55s ease,opacity .5s ease}
+.seal:before{content:"";position:absolute;inset:5px;border-radius:50%;border:1px solid rgba(255,255,255,.35)}
+.env.open .seal{transform:translate(-50%,-50%) scale(1.7) rotate(9deg);opacity:0}
+.open-btn{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#fff;background:var(--olive);border:none;padding:15px 34px;border-radius:2px;cursor:pointer;box-shadow:0 16px 36px -18px rgba(63,70,47,.85);transition:background .3s,transform .3s,opacity .55s ease}
+.open-btn:hover{background:var(--olive-2);transform:translateY(-2px)}
+.open-hint{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--sage-deep);opacity:.85;margin-top:-14px;transition:opacity .5s}
+.veil.opening .open-btn{opacity:0;pointer-events:none;transform:translateY(8px)}
+.veil.opening .open-hint{opacity:0}
+
+/* ---------- mobile preview frame ---------- */
+body.mobileframe{background:#23241f}
+body.mobileframe .stage{max-width:392px;margin:26px auto;border-radius:46px;box-shadow:0 0 0 12px #15161a,0 0 0 14px #34353b,0 40px 90px rgba(0,0,0,.55)}
+.hero-dark{position:absolute;inset:0;z-index:1;background:#191b15;opacity:var(--heroDark,.12);pointer-events:none}
+
+/* ---------- Tweaks panel ---------- */
+.tweaks-panel{position:fixed;right:16px;top:16px;z-index:120;width:250px;background:rgba(252,250,246,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid #e3ded2;border-radius:14px;box-shadow:0 24px 60px -20px rgba(40,40,30,.5);font-family:'Montserrat',sans-serif;color:#2a2a26;overflow:hidden}
+.tweaks-panel[hidden]{display:none}
+.tw-head{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid #ece7da;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5a5f4c}
+.tw-head button{border:none;background:none;font-size:21px;line-height:1;color:#9a9c93;cursor:pointer;padding:0 2px}
+.tw-body{padding:14px 15px 18px}
+.tw-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tw-row label{font-size:12.5px;font-weight:500}
+.tw-section{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#9a9c93;margin:16px 0 9px;font-weight:600}
+.tw-toggle{width:42px;height:24px;border-radius:20px;border:none;background:#d8d4c7;position:relative;cursor:pointer;transition:background .25s;flex:none}
+.tw-toggle::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .25s}
+.tw-toggle.on{background:var(--sage)}
+.tw-toggle.on::after{transform:translateX(18px)}
+.tw-swatches{display:flex;gap:9px}
+.tw-swatch{width:30px;height:30px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .2s;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.tw-swatch.sel{border-color:#2a2a26;transform:scale(1.08)}
+.tw-range{width:100%;accent-color:var(--sage);margin-top:2px;cursor:pointer}
+
+@media(max-width:430px){
+  .cd-num{font-size:44px}
+}
+</style>
+</head>
+<body>
+
+<!-- intro: envelope open animation -->
+<div class="veil" id="veil">
+  <div class="env" id="env">
+    <div class="env-back"></div>
+    <div class="letter">
+      <div class="l-eye">Тойға шақыру</div>
+      <div class="l-script">Madi &amp; Yeldana</div>
+      <img class="l-heart" src="assets/heart-sage.png" alt="" aria-hidden="true">
+      <div class="l-date">20 · 08 · 2026</div>
+    </div>
+    <div class="env-front"></div>
+    <div class="env-flap"></div>
+    <div class="seal">M&amp;Y</div>
+  </div>
+  <button class="open-btn" id="openBtn">Шақыруды ашу</button>
+  <div class="open-hint">Конвертті ашып, шақыруды оқыңыз</div>
+</div>
+
+<div class="stage">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero" data-screen-label="Hero">
+    <img class="hero-bg" src="assets/venue-building.jpg" alt="Satai Park">
+    <div class="hero-veil"></div>
+    <div class="hero-dark"></div>
+    <div class="hero-top">Тойға шақыру</div>
+    <div class="hero-names">
+      <div class="hnm">Madi</div>
+      <div class="hnm hnm2">Yeldana</div>
+    </div>
+    <div class="hero-dt">20.08.2026</div>
+    <div class="scrollcue" aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== INVITATION ===== -->
+  <section class="paper center" data-screen-label="Invitation">
+    <div class="invite-hi reveal">Құрметті қонақтар!</div>
+    <p class="invite-text reveal d1">Сіздерді Мәди мен Елдананың шаңырақ көтеру тойына арналған салтанатты ақ дастарханымыздың қадірлі қонағы болуға шақырамыз.</p>
+    <div class="eyebrow hosts-eye reveal d2">Той иелері</div>
+    <div class="hosts-script reveal d2">Еркін-Гүлмира</div>
+  </section>
+
+  <!-- photo band -->
+  <img class="band" src="assets/venue-ceremony.jpg" alt="" loading="lazy">
+
+  <!-- ===== VENUE + PROGRAM ===== -->
+  <section class="paper center" data-screen-label="Venue">
+    <div class="eyebrow reveal">Мекен-жайымыз</div>
+    <div class="bigscript reveal d1">Satai Park</div>
+    <div class="addr reveal d2">Алматы, Үстіңгі Қаскелен тас жолы, 5543</div>
+    <div class="map-btns reveal d2" style="margin-top:26px">
+      <a class="mini-btn" href="https://2gis.kz/almaty/geo/70000001045356597/76.654341,43.169829" target="_blank" rel="noopener">2GIS картадан ашу</a>
+    </div>
+
+    <div class="eyebrow prog-head reveal">Той бағдарламасы</div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- photo band -->
+  <img class="band" src="assets/venue-tables.jpg" alt="" loading="lazy">
+
+  <!-- ===== COUNTDOWN + CALENDAR ===== -->
+  <section class="paper center" data-screen-label="Countdown">
+    <div class="eyebrow reveal">Тойға дейін</div>
+    <div class="cd-grid reveal d1" id="countdown">
+      <div class="cd-cell"><div class="cd-num" id="cd-d">00</div><div class="cd-line"></div><div class="cd-lbl">Күн</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-h">00</div><div class="cd-line"></div><div class="cd-lbl">Сағат</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-m">00</div><div class="cd-line"></div><div class="cd-lbl">Минут</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-s">00</div><div class="cd-line"></div><div class="cd-lbl">Секунд</div></div>
+    </div>
+    <div class="cal-month reveal d2">Тамыз</div>
+    <div class="cal reveal d2" id="calendar"></div>
+  </section>
+
+  <!-- photo band -->
+  <img class="band" src="assets/bouquet.png" alt="" loading="lazy" style="object-position:center 30%">
+
+  <!-- ===== RSVP ===== -->
+  <section class="paper sage rsvp center" data-screen-label="RSVP">
+    <div class="deadline reveal d1">10 Тамыз 2026 дейін жауап беріңіз</div>
+
+    <form class="form reveal d2" id="rsvpForm">
+      <div class="field">
+        <label for="nm">Сіздің атыңыз</label>
+        <input type="text" id="nm" name="name" placeholder="Аты-жөніңіз" autocomplete="name">
+      </div>
+      <div class="field">
+        <label>Тойға келесіз бе?</label>
+        <div class="seg" id="seg">
+          <button type="button" data-v="yes" class="on">Иә, келемін!</button>
+          <button type="button" data-v="no">Өкінішке орай, жоқ</button>
+        </div>
+      </div>
+      <div class="field" id="guestField">
+        <label for="guests">Қонақтар саны</label>
+        <select id="guests" name="guests">
+          <option value="1">1 қонақ</option>
+          <option value="2">2 қонақ</option>
+          <option value="3">3 қонақ</option>
+          <option value="4">4 қонақ</option>
+          <option value="5">5 қонақ</option>
+          <option value="6+">6 және одан көп</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="msg">Тілек немесе сұрақтар</label>
+        <textarea id="msg" name="msg" placeholder="Ерекше тілектер, сұрақтар…"></textarea>
+      </div>
+      <button class="btn" type="submit">Растау</button>
+    </form>
+
+    <div class="form-done" id="formDone">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+      <h3 id="doneTitle">Рахмет!</h3>
+      <p id="doneMsg">Жауабыңыз қабылданды. Тойда көріскенше!</p>
+    </div>
+  </section>
+
+  <!-- final photo band -->
+  <img class="band" src="assets/veil.jpg" alt="" loading="lazy" style="object-position:center 60%">
+
+</div>
+
+<!-- audio -->
+<audio id="bgm" src="assets/music.mp3" loop preload="auto" playsinline></audio>
+<div class="audio-hint" id="audioHint">♪ Young and Beautiful — Lana Del Rey</div>
+<button class="audio-btn" id="audioBtn" aria-label="Музыканы қосу/өшіру"><div class="bars"><i></i><i></i><i></i><i></i></div></button>
+
+<!-- Tweaks panel -->
+<div class="tweaks-panel" id="tweaksPanel" hidden>
+  <div class="tw-head"><span>Tweaks</span><button id="twClose" aria-label="Жабу">×</button></div>
+  <div class="tw-body">
+    <div class="tw-row"><label>Мобильді көрініс</label><button class="tw-toggle" id="twMobile"></button></div>
+    <div class="tw-section">Акцент түсі</div>
+    <div class="tw-swatches" id="twAccent"></div>
+    <div class="tw-section">Фото қараңғылығы</div>
+    <input type="range" class="tw-range" id="twHero" min="0" max="50">
+    <div class="tw-row" style="margin-top:16px"><label>Әуен авто-қосылу</label><button class="tw-toggle" id="twMusic"></button></div>
+  </div>
+</div>
+
+<script>
+/* ---------- reveal on scroll ---------- */
+function checkReveal(){
+  const vh=window.innerHeight||800;
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top < vh*0.92 && r.bottom > -60) el.classList.add('in');
+  });
+}
+window.addEventListener('scroll',checkReveal,{passive:true});
+window.addEventListener('resize',checkReveal);
+checkReveal();setTimeout(checkReveal,150);setTimeout(checkReveal,600);
+setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')),3500);
+
+/* ---------- program ---------- */
+const program=[
+  ['14:00','Қонақтарды қарсы алу','Қош келдіңіздер!<br>Шампан және welcome-коктейльдер'],
+  ['15:00','Беташар','Келінді жаңа әулетпен, туыстармен таныстыру'],
+  ['16:00','Неке қию рәсімі','Салтанатты тіркеу және ант беру'],
+  ['17:00','Салтанатты дастархан','Той кешкі асы және құттықтаулар'],
+  ['22:00','Торт кесу','Кештің тәтті финалы'],
+  ['23:00','Кештің аяқталуы','Жақсы көңіл-күймен үйлеріңізге қайту'],
+];
+const tl=document.getElementById('timeline');
+program.forEach((p,i)=>{
+  const d=document.createElement('div');
+  d.className='tl-item reveal'+(i%2?' d1':'');
+  d.innerHTML='<div class="tl-node"></div><div class="tl-time">'+p[0]+'</div><div class="tl-title">'+p[1]+'</div><div class="tl-sub">'+p[2]+'</div>';
+  tl.appendChild(d);
+});
+checkReveal();
+
+/* ---------- countdown ---------- */
+const target=new Date('2026-08-20T14:00:00+05:00').getTime();
+const pad=n=>String(n).padStart(2,'0');
+function tick(){
+  const diff=target-Date.now();
+  const el=id=>document.getElementById(id);
+  if(diff<=0){el('cd-d').textContent='00';el('cd-h').textContent='00';el('cd-m').textContent='00';el('cd-s').textContent='00';return;}
+  const d=Math.floor(diff/86400000),h=Math.floor(diff/3600000)%24,m=Math.floor(diff/60000)%60,s=Math.floor(diff/1000)%60;
+  el('cd-d').textContent=pad(d);el('cd-h').textContent=pad(h);el('cd-m').textContent=pad(m);el('cd-s').textContent=pad(s);
+}
+tick();setInterval(tick,1000);
+
+/* ---------- calendar (August 2026, Mon-first) ---------- */
+(function(){
+  const cal=document.getElementById('calendar');
+  const dows=['ДУ','СИ','СР','БЕ','ЖҰ','СН','ЖЕ'];
+  dows.forEach(d=>{const e=document.createElement('div');e.className='dow';e.textContent=d;cal.appendChild(e);});
+  const firstIdx=5, days=31, mark=20;
+  for(let i=0;i<firstIdx;i++){const e=document.createElement('div');e.className='dy em';cal.appendChild(e);}
+  for(let d=1;d<=days;d++){
+    const idx=(firstIdx+d-1)%7;
+    const weekend=idx===5||idx===6;
+    const e=document.createElement('div');
+    e.className='dy'+(weekend?' we':'')+(d===mark?' mark':'');
+    if(d===mark){e.innerHTML='<svg class="hh" viewBox="0 0 24 24" fill="none" stroke="#D8322A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5C12 20.5 3.6 14.6 3.6 8.9 A3.6 3.6 0 0 1 12 6.2 A3.6 3.6 0 0 1 20.4 8.9 C20.4 14.6 12 20.5 12 20.5 Z"/></svg><span style="position:relative;z-index:1">'+d+'</span>';}
+    else e.textContent=d;
+    cal.appendChild(e);
+  }
+})();
+
+/* ---------- RSVP → Telegram ----------
+   Екі мәнді толтырыңыз:
+   1) @BotFather-ге /newbot жазып бот құрыңыз → токенді TELEGRAM_BOT_TOKEN-ге қойыңыз.
+   2) @userinfobot-қа /start жазып, өз id-ыңызды TELEGRAM_CHAT_ID-ге қойыңыз (ботқа бір рет /start басыңыз).
+*/
+const TELEGRAM_BOT_TOKEN = '8889568967:AAFj9XJkahZngchqttKS0LuS6Z4PETaP6kQ';
+const TELEGRAM_CHAT_ID   = ''; // <-- ӨЗ chat id-ыңызды қойыңыз (төмендегі нұсқаны қараңыз)
+function sendToTelegram(d){
+  if(!TELEGRAM_BOT_TOKEN||!TELEGRAM_CHAT_ID)return;
+  const text='💌 RSVP — Мәди & Елдана\n\n👤 '+d.name+'\n'+(d.attending==='yes'?'✅ Келемін · 👥 '+d.guests:'🙏 Келе алмаймын')+(d.msg?'\n💬 '+d.msg:'');
+  fetch('https://api.telegram.org/bot'+TELEGRAM_BOT_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TELEGRAM_CHAT_ID,text:text})}).catch(()=>{});
+}
+const seg=document.getElementById('seg');
+let attending='yes';
+seg.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  seg.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');attending=b.dataset.v;
+  document.getElementById('guestField').style.display=attending==='yes'?'':'none';
+});
+const KEY='rsvp_madi_yeldana';
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s){
+  document.getElementById('nm').value=s.name||'';
+  if(s.guests)document.getElementById('guests').value=s.guests;
+  document.getElementById('msg').value=s.msg||'';
+  attending=s.attending||'yes';
+  seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.v===attending));
+  document.getElementById('guestField').style.display=attending==='yes'?'':'none';
+}}catch(e){}
+document.getElementById('rsvpForm').addEventListener('submit',ev=>{
+  ev.preventDefault();
+  const name=document.getElementById('nm').value.trim();
+  if(!name){const i=document.getElementById('nm');i.focus();i.style.borderColor='#fff';i.placeholder='Атыңызды жазыңыз…';return;}
+  const data={name,attending,guests:document.getElementById('guests').value,msg:document.getElementById('msg').value.trim()};
+  try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}
+  sendToTelegram(data);
+  document.getElementById('rsvpForm').style.display='none';
+  const done=document.getElementById('formDone');done.classList.add('show');
+  if(attending==='no'){document.getElementById('doneTitle').textContent='Хабарлағаныңызға рахмет';document.getElementById('doneMsg').textContent='Сізді сағынамыз. Жүрегімізде боласыз!';}
+  else{document.getElementById('doneMsg').textContent=name+', жауабыңыз қабылданды. Тойда көріскенше!';}
+});
+
+/* ---------- background music (mp3) ---------- */
+const bgm=document.getElementById('bgm');
+const audioBtn=document.getElementById('audioBtn');
+const audioHint=document.getElementById('audioHint');
+let musicOn=false, fadeRAF=null;
+function setAudioUI(p){audioBtn.classList.toggle('playing',p);}
+function fadeVol(to,ms,cb){
+  cancelAnimationFrame(fadeRAF);
+  const from=bgm.volume||0, t0=performance.now();
+  (function step(t){const k=Math.min(1,(t-t0)/ms);bgm.volume=Math.max(0,Math.min(1,from+(to-from)*k));if(k<1){fadeRAF=requestAnimationFrame(step);}else if(cb)cb();})(t0);
+}
+function startMusic(){
+  try{bgm.volume=0;}catch(e){}
+  const pr=bgm.play();
+  if(pr&&pr.then){pr.then(()=>{musicOn=true;setAudioUI(true);fadeVol(0.82,1600);}).catch(()=>{musicOn=false;setAudioUI(false);});}
+  else{musicOn=true;setAudioUI(true);fadeVol(0.82,1600);}
+}
+function stopMusic(){musicOn=false;setAudioUI(false);fadeVol(0,500,()=>{try{bgm.pause();}catch(e){}});}
+audioBtn.addEventListener('click',()=>{
+  if(musicOn){stopMusic();localStorage.setItem('music_on','0');}
+  else{startMusic();localStorage.setItem('music_on','1');}
+  audioHint.classList.remove('show');
+});
+window.addEventListener('load',()=>{if(localStorage.getItem('music_on')!=='0')setTimeout(startMusic,150);});
+function firstGesture(){if(!musicOn && localStorage.getItem('music_on')!=='0')startMusic();['pointerdown','touchstart','keydown'].forEach(ev=>window.removeEventListener(ev,firstGesture));}
+['pointerdown','touchstart','keydown'].forEach(ev=>window.addEventListener(ev,firstGesture,{passive:true}));
+
+/* ---------- intro: envelope open animation ---------- */
+const veil=document.getElementById('veil');
+const env=document.getElementById('env');
+requestAnimationFrame(()=>veil.classList.add('ready'));
+function dismissVeil(){
+  if(veil.classList.contains('opening'))return;
+  veil.classList.add('opening');
+  env.classList.add('open');
+  if(localStorage.getItem('music_on')!=='0') startMusic();
+  setTimeout(()=>{veil.classList.add('gone');setTimeout(()=>{veil.style.display='none';},1000);},1750);
+  setTimeout(()=>{audioHint.classList.add('show');setTimeout(()=>audioHint.classList.remove('show'),4200);},2500);
+  checkReveal();setTimeout(checkReveal,1900);
+}
+document.getElementById('openBtn').addEventListener('click',dismissVeil);
+env.addEventListener('click',dismissVeil);
+
+/* ---------- Tweaks ---------- */
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "mobileFrame": true,
+  "accent": "sage",
+  "heroDark": 12,
+  "musicAutoplay": true
+}/*EDITMODE-END*/;
+const ACCENTS=[
+  {id:'sage',sage:'#9DAA88',deep:'#7E8C6B'},
+  {id:'rose',sage:'#C2A0A0',deep:'#9E7E7E'},
+  {id:'slate',sage:'#93A0AD',deep:'#6F7E8C'},
+  {id:'sand',sage:'#C2A079',deep:'#9E7E55'}
+];
+const twPanel=document.getElementById('tweaksPanel');
+const twMobile=document.getElementById('twMobile');
+const twMusic=document.getElementById('twMusic');
+const twHero=document.getElementById('twHero');
+const twAccent=document.getElementById('twAccent');
+ACCENTS.forEach(a=>{const s=document.createElement('div');s.className='tw-swatch';s.dataset.id=a.id;s.style.background=a.sage;s.title=a.id;twAccent.appendChild(s);});
+function applyMobile(v){document.body.classList.toggle('mobileframe',!!v);twMobile.classList.toggle('on',!!v);}
+function applyAccent(id){const a=ACCENTS.find(x=>x.id===id)||ACCENTS[0];document.documentElement.style.setProperty('--sage',a.sage);document.documentElement.style.setProperty('--sage-deep',a.deep);Array.from(twAccent.children).forEach(s=>s.classList.toggle('sel',s.dataset.id===a.id));}
+function applyHero(v){document.documentElement.style.setProperty('--heroDark',(v/100));twHero.value=v;}
+function applyMusicUI(v){twMusic.classList.toggle('on',!!v);}
+function twPersist(o){Object.assign(TWEAKS,o);try{window.parent.postMessage({type:'__edit_mode_set_keys',edits:o},'*');}catch(e){}}
+applyMobile(TWEAKS.mobileFrame);applyAccent(TWEAKS.accent);applyHero(TWEAKS.heroDark);applyMusicUI(TWEAKS.musicAutoplay);
+twMobile.addEventListener('click',()=>{const v=!TWEAKS.mobileFrame;applyMobile(v);twPersist({mobileFrame:v});});
+twAccent.addEventListener('click',e=>{const s=e.target.closest('.tw-swatch');if(!s)return;applyAccent(s.dataset.id);twPersist({accent:s.dataset.id});});
+twHero.addEventListener('input',()=>{const v=+twHero.value;applyHero(v);twPersist({heroDark:v});});
+twMusic.addEventListener('click',()=>{const v=!TWEAKS.musicAutoplay;applyMusicUI(v);twPersist({musicAutoplay:v});localStorage.setItem('music_on',v?'1':'0');if(v){startMusic();}else{stopMusic();}});
+document.getElementById('twClose').addEventListener('click',()=>{twPanel.hidden=true;try{window.parent.postMessage({type:'__edit_mode_dismissed'},'*');}catch(e){}});
+window.addEventListener('message',e=>{const d=e.data||{};if(d.type==='__activate_edit_mode'){twPanel.hidden=false;}else if(d.type==='__deactivate_edit_mode'){twPanel.hidden=true;}});
+try{window.parent.postMessage({type:'__edit_mode_available'},'*');}catch(e){}
+</script>
+</body>
+</html>
