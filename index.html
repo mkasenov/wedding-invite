@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#e6dfd0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Мәди & Елдана">
 <title>Мәди & Елдана — Тойға шақыру</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +54,7 @@ img{display:block;max-width:100%}
 
 /* ---------- HERO ---------- */
 .hero{position:relative;height:100svh;min-height:540px;overflow:hidden}
+.hero-top{padding-top:env(safe-area-inset-top)}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(40,42,34,.28) 0%,rgba(40,42,34,.05) 22%,rgba(40,42,34,.02) 55%,rgba(40,42,34,.18) 100%)}
 .hero-top{position:absolute;top:5.5%;left:0;right:0;z-index:2;text-align:center;font-family:'Montserrat',sans-serif;font-weight:600;font-size:clamp(19px,5.2vw,24px);letter-spacing:.02em;color:#fff;text-shadow:0 2px 14px rgba(30,30,20,.4)}
@@ -138,7 +142,7 @@ img{display:block;max-width:100%}
 .footer .f-love{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--sage-deep);margin-top:16px}
 
 /* ---------- AUDIO ---------- */
-.audio-btn{position:fixed;right:16px;bottom:16px;z-index:60;width:48px;height:48px;border-radius:50%;background:var(--olive);border:1px solid rgba(255,255,255,.25);box-shadow:0 14px 34px -12px rgba(40,46,30,.85);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .35s}
+.audio-btn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;width:48px;height:48px;border-radius:50%;background:var(--olive);border:1px solid rgba(255,255,255,.25);box-shadow:0 14px 34px -12px rgba(40,46,30,.85);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .35s}
 .audio-btn:hover{transform:scale(1.06)}
 .audio-btn .bars{display:flex;align-items:flex-end;gap:2.5px;height:17px}
 .audio-btn .bars i{width:2.5px;background:#F2F1E9;border-radius:2px;height:30%}
